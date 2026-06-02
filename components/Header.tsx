@@ -10,40 +10,67 @@ import { useEffect, useState } from "react";
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const [showTopBar, setShowTopBar] = useState(true);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8);
-    onScroll();
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
 
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+      // Update scrolled state for background
+      setScrolled(currentScrollY > 8);
+
+      // Hide top bar when scrolling down, show when scrolling up or at top
+      if (currentScrollY > 50) {
+        // Scrolling down & past 50px - hide top bar
+        setShowTopBar(false);
+      } else {
+        // Scrolling up - show top bar
+        setShowTopBar(true);
+      }
+    };
+
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, {
+      passive: true,
+    });
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 bg-background transition-all duration-300 ${
+      className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "shadow-[var(--shadow-nav)] border-b border-border"
-          : "border-b border-transparent"
+          ? "bg-background/95 backdrop-blur-md border-b border-border shadow-[var(--shadow-nav)]"
+          : "bg-transparent border-b border-transparent"
       }`}
     >
-      {/* Header Top Section */}
+      {/* Header Top Section - Hidden when scrolling down */}
       <div
         className={`border-b border-border transition-all duration-300 ${
           scrolled ? "py-1.5" : "py-2"
+        } ${showTopBar ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0"} ${
+          !scrolled ? "border-white/20" : ""
         }`}
       >
         <div className="container mx-auto flex items-center justify-end gap-6 px-4 sm:px-6 lg:px-8">
           <a
             href={`tel:${siteConfig.contact.phone}`}
-            className="flex items-center gap-2 text-xs text-muted-foreground hover:text-primary transition-colors"
+            className={`flex items-center gap-2 text-xs transition-colors ${
+              scrolled
+                ? "text-muted-foreground hover:text-primary"
+                : "text-white/80 hover:text-white"
+            }`}
           >
             <Phone className="h-3.5 w-3.5" />
             <span>{siteConfig.contact.phone}</span>
           </a>
           <a
             href={`mailto:${siteConfig.contact.email}`}
-            className="flex items-center gap-2 text-xs text-muted-foreground hover:text-primary transition-colors"
+            className={`flex items-center gap-2 text-xs transition-colors ${
+              scrolled
+                ? "text-muted-foreground hover:text-primary"
+                : "text-white/80 hover:text-white"
+            }`}
           >
             <Mail className="h-3.5 w-3.5" />
             <span>{siteConfig.contact.email}</span>
@@ -52,15 +79,27 @@ export default function Header() {
       </div>
 
       {/* Main Navigation */}
-      <nav className="container mx-auto flex h-16 items-center justify-between px-4 sm:px-6 lg:px-8">
+      <nav
+        className={`container mx-auto flex h-16 items-center justify-between px-4 sm:px-6 lg:px-8 ${scrolled ? "-translate-y-3" : ""}`}
+      >
         <Link href="/" className="flex items-center gap-2">
-          <Image
-            src={siteConfig.company.logoUrl}
-            alt={siteConfig.company.name}
-            width={150}
-            height={150}
-            className="w-20 h-auto object-contain"
-          />
+          {scrolled ? (
+            <Image
+              src={siteConfig.company.logoUrl}
+              alt={siteConfig.company.name}
+              width={150}
+              height={150}
+              className="w-20 h-auto object-contain"
+            />
+          ) : (
+            <Image
+              src={siteConfig.company.logoUrl}
+              alt={siteConfig.company.name}
+              width={150}
+              height={150}
+              className="w-20 h-auto object-contain brightness-0 invert"
+            />
+          )}
         </Link>
 
         <div className="flex items-center gap-3">
@@ -68,27 +107,39 @@ export default function Header() {
             {siteConfig.navigation.main.map(
               (link: { label: string; href: string }) => (
                 <li key={link.href}>
-                  <a
+                  <Link
                     href={link.href}
-                    className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
+                    className={`text-sm font-medium transition-colors ${
+                      scrolled
+                        ? "text-muted-foreground hover:text-primary"
+                        : "text-white/80 hover:text-white"
+                    }`}
                   >
                     {link.label}
-                  </a>
+                  </Link>
                 </li>
               ),
             )}
           </ul>
 
           <Button
-            className="bg-primary text-primary-foreground hover:bg-primary/90"
+            className={`hidden lg:inline-flex transition-all duration-300 ${
+              scrolled
+                ? "bg-primary text-primary-foreground hover:bg-primary/90"
+                : "bg-white text-primary hover:bg-white/90"
+            }`}
             asChild
           >
-            <a href="#contact">Free Consultation</a>
+            <Link href="#contact">Free Consultation</Link>
           </Button>
 
           <button
             aria-label="Toggle menu"
-            className="grid h-10 w-10 place-items-center rounded-md border border-border lg:hidden"
+            className={`grid h-10 w-10 place-items-center rounded-md border transition-all duration-300 lg:hidden ${
+              scrolled
+                ? "border-border text-foreground"
+                : "border-white/30 text-white hover:border-white/50"
+            }`}
             onClick={() => setOpen((s) => !s)}
           >
             {open ? (
@@ -102,7 +153,7 @@ export default function Header() {
 
       {/* Mobile drawer */}
       <div
-        className={`lg:hidden overflow-hidden border-t border-border bg-background transition-[max-height] duration-300 ${
+        className={`lg:hidden overflow-hidden border-t border-border bg-background/95 backdrop-blur-md transition-[max-height] duration-300 ${
           open ? "max-h-[600px]" : "max-h-0"
         }`}
       >
@@ -124,9 +175,9 @@ export default function Header() {
               className="w-full bg-primary text-primary-foreground hover:bg-primary/90"
               asChild
             >
-              <a href="#contact" onClick={() => setOpen(false)}>
+              <Link href="#contact" onClick={() => setOpen(false)}>
                 Free Consultation
-              </a>
+              </Link>
             </Button>
           </div>
         </div>
