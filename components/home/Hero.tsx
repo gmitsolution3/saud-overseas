@@ -86,7 +86,7 @@ export default function Hero() {
         {slides.map((slide) => (
           <SwiperSlide key={slide.id}>
             <div
-              className="relative min-h-[600px] lg:min-h-screen w-full"
+              className="relative min-h-screen lg:min-h-screen w-full"
               style={{
                 backgroundImage: `url(${slide.image})`,
                 backgroundSize: "cover",
@@ -96,7 +96,7 @@ export default function Hero() {
             >
               {/* Content container */}
               <div className="relative container mx-auto px-4 sm:px-6 lg:px-8 h-full">
-                <div className="flex items-center min-h-[600px] lg:min-h-screen">
+                <div className="flex items-center min-h-screen lg:min-h-screen">
                   <motion.div
                     initial={{ opacity: 0, y: 24 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -104,7 +104,7 @@ export default function Hero() {
                       duration: 0.7,
                       ease: [0.22, 1, 0.36, 1],
                     }}
-                    className="max-w-xl lg:max-w-2xl"
+                    className="max-w-xl lg:max-w-2xl text-center lg:text-left"
                   >
                     <span className="inline-flex items-center gap-2 rounded-full border border-border bg-background/80 backdrop-blur-sm px-3 py-1 text-xs font-medium text-primary">
                       {slide.badgeText}
@@ -118,7 +118,7 @@ export default function Hero() {
                     <p className="mt-5 max-w-xl text-base leading-relaxed text-white sm:text-lg">
                       {slide.description}
                     </p>
-                    <div className="mt-8 flex flex-wrap gap-3">
+                    <div className="mt-8 flex justify-center lg:justify-start flex-wrap gap-3">
                       <Button
                         size="lg"
                         className="bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg hover:shadow-xl transition-all duration-300"
