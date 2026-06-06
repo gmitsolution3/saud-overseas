@@ -2,10 +2,11 @@
 
 import { Button } from "@/components/ui/button";
 import { siteConfig } from "@/config";
-import { Mail, Menu, Phone, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import HeaderTop from "./HeaderTop";
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
@@ -45,38 +46,7 @@ export default function Header() {
       }`}
     >
       {/* Header Top Section - Hidden when scrolling down */}
-      <div
-        className={`border-b border-border transition-all duration-300 ${
-          scrolled ? "py-1.5" : "py-2"
-        } ${showTopBar ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0"} ${
-          !scrolled ? "border-white/20" : ""
-        }`}
-      >
-        <div className="container mx-auto flex items-center justify-end gap-6 px-4 sm:px-6 lg:px-8">
-          <a
-            href={`tel:${siteConfig.contact.phone}`}
-            className={`flex items-center gap-2 text-xs transition-colors ${
-              scrolled
-                ? "text-muted-foreground hover:text-primary"
-                : "text-white/80 hover:text-white"
-            }`}
-          >
-            <Phone className="h-3.5 w-3.5" />
-            <span>{siteConfig.contact.phone}</span>
-          </a>
-          <a
-            href={`mailto:${siteConfig.contact.email}`}
-            className={`flex items-center gap-2 text-xs transition-colors ${
-              scrolled
-                ? "text-muted-foreground hover:text-primary"
-                : "text-white/80 hover:text-white"
-            }`}
-          >
-            <Mail className="h-3.5 w-3.5" />
-            <span>{siteConfig.contact.email}</span>
-          </a>
-        </div>
-      </div>
+      <HeaderTop scrolled={scrolled} showTopBar={showTopBar} />
 
       {/* Main Navigation */}
       <nav
@@ -160,14 +130,14 @@ export default function Header() {
         <div className="space-y-1 px-4 py-4">
           {siteConfig.navigation.main.map(
             (link: { label: string; href: string }) => (
-              <a
+              <Link
                 key={link.href}
                 href={link.href}
                 onClick={() => setOpen(false)}
                 className="block rounded-md px-3 py-2 text-sm font-medium text-foreground hover:bg-secondary"
               >
                 {link.label}
-              </a>
+              </Link>
             ),
           )}
           <div className="mt-3 flex flex-col gap-2 pt-3 border-t border-border">

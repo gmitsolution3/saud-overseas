@@ -109,12 +109,12 @@ export default function Hero() {
                     <span className="inline-flex items-center gap-2 rounded-full border border-border bg-background/80 backdrop-blur-sm px-3 py-1 text-xs font-medium text-primary">
                       {slide.badgeText}
                     </span>
-                    <h1 className="mt-5 text-4xl font-bold leading-[1.05] tracking-tight text-white sm:text-5xl lg:text-6xl">
+                    <h2 className="mt-5 text-4xl font-bold leading-[1.05] tracking-tight text-white sm:text-5xl lg:text-6xl">
                       {slide.title}{" "}
                       <span className="text-primary">
                         {slide.highlightedText}
                       </span>
-                    </h1>
+                    </h2>
                     <p className="mt-5 max-w-xl text-base leading-relaxed text-white sm:text-lg">
                       {slide.description}
                     </p>
