@@ -15,7 +15,7 @@ const items = [
 export default function Stats() {
   return (
     <section className="border-y border-border bg-section py-14">
-      <div className="mx-auto grid max-w-7xl grid-cols-2 gap-4 px-4 sm:px-6 lg:grid-cols-4 lg:gap-6 lg:px-8">
+      <div className="container mx-auto grid grid-cols-2 gap-4 px-4 sm:px-6 lg:grid-cols-4 lg:gap-6 lg:px-8">
         {items.map((it, i) => (
           <Reveal key={it.label} delay={i * 0.08}>
             <div className="flex items-center gap-4 rounded-xl border border-border bg-background p-5 shadow-[var(--shadow-card)]">
