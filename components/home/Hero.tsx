@@ -14,10 +14,10 @@ import "swiper/css/pagination";
 const slides = [
   {
     id: 1,
-    title: "Your Gateway To",
-    highlightedText: "Global Opportunities",
+    highlightedText: "Global Pathways",
+    title: "Your Trusted Visa Consultancy Destination Online",
     description:
-      "From study visas and work permits to tourist travel and full immigration support — our licensed consultants guide you through every step of your international journey.",
+      "Expert visa guidance and support for seamless global journeys.",
     badgeText: "Trusted Visa Consultancy",
     image: "/images/hero_one.png",
     stats: [
@@ -28,10 +28,10 @@ const slides = [
   },
   {
     id: 2,
-    title: "Your Journey Starts",
-    highlightedText: "Right Here",
+    highlightedText: "VisaVoyage",
+    title: "Navigate Your Global Travel Path with Confidence",
     description:
-      "Expert guidance for student visas, work permits, and permanent residency. Let us help you achieve your international dreams with personalized support.",
+      "Your compass for smooth visa processes and international adventures.",
     badgeText: "100% Success Rate",
     image: "/images/hero_two.png",
     stats: [
@@ -42,10 +42,10 @@ const slides = [
   },
   {
     id: 3,
-    title: "Expert Immigration",
-    highlightedText: "Solutions",
+    highlightedText: "VisaPro Connect",
+    title: "Your Bridge to Global Opportunities and Exploration",
     description:
-      "Navigate complex visa processes with confidence. Our certified consultants provide end-to-end support for all your immigration needs.",
+      "Unlock borders, seize opportunities, explore the world with confidence.",
     badgeText: "Licensed Consultants",
     image: "/images/hero_three.png",
     stats: [
@@ -109,11 +109,11 @@ export default function Hero() {
                     <span className="inline-flex items-center gap-2 rounded-full border border-border bg-background/80 backdrop-blur-sm px-3 py-1 text-xs font-medium text-primary">
                       {slide.badgeText}
                     </span>
-                    <h2 className="mt-5 text-4xl font-bold leading-[1.05] tracking-tight text-white sm:text-5xl lg:text-6xl">
-                      {slide.title}{" "}
+                    <h2 className="mt-5 text-4xl font-bold leading-[1.05] tracking-tight text-white sm:text-5xl lg:text-4xl">
                       <span className="text-primary">
                         {slide.highlightedText}
-                      </span>
+                      </span>{" "}
+                      {slide.title}
                     </h2>
                     <p className="mt-5 max-w-xl text-base leading-relaxed text-white sm:text-lg">
                       {slide.description}

@@ -44,11 +44,14 @@ export default function About() {
             A decade of guiding journeys across borders
           </h2>
           <p className="mt-5 text-base leading-relaxed text-muted-foreground sm:text-lg">
-            We help students, professionals, and families navigate
-            complex visa and immigration pathways. Our team of
-            licensed consultants combines deep expertise with a
-            personal, transparent approach — so you always know
-            exactly where your application stands.
+            Welcome to Saud Overses, the best travel service in Dhaka
+            City! Our areas of expertise are easy visa processing,
+            easy airline ticket purchases, and easy hotel booking.
+            Situated in the lively Banani neighborhood at House No: 04
+            (2nd Floor), Road No: 15, Block No: D, Banani. We are
+            committed to providing you with an outstanding travel
+            experience. Since obtaining a visa can be challenging and
+            time-consuming, Saud Overseas Limited is aware of this and is here to assist you in making the process as smooth as possible. We are dedicated to providing you with the best service and support, ensuring that your travel plans are hassle-free and enjoyable.
           </p>
 
           <ul className="mt-8 grid gap-3 sm:grid-cols-2">
