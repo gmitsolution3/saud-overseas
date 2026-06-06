@@ -45,7 +45,7 @@ const countries = [
   },
 ];
 
-export function Destinations() {
+export default function Destinations() {
   return (
     <Section id="countries">
       <SectionHeader

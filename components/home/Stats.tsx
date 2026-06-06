@@ -14,7 +14,7 @@ const items = [
 
 export default function Stats() {
   return (
-    <section className="border-y border-border bg-section py-14">
+    <section className="border-y border-border bg-white py-14">
       <div className="container mx-auto grid grid-cols-2 gap-4 px-4 sm:px-6 lg:grid-cols-4 lg:gap-6 lg:px-8">
         {items.map((it, i) => (
           <Reveal key={it.label} delay={i * 0.08}>

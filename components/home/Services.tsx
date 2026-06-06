@@ -43,7 +43,7 @@ const services = [
   },
 ];
 
-export function Services() {
+export default function Services() {
   return (
     <Section id="services" bg="muted">
       <SectionHeader
