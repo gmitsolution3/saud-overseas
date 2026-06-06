@@ -1,4 +1,6 @@
 import About from "@/components/home/About";
+import Contact from "@/components/home/Contact";
+import CtaBanner from "@/components/home/CtaBanner";
 import Destinations from "@/components/home/Destination";
 import FAQ from "@/components/home/FAQ";
 import Hero from "@/components/home/Hero";
@@ -18,6 +20,8 @@ export default function Home() {
       <OurProcess />
       <WhyChooseUs />
       <FAQ />
+      <CtaBanner />
+      <Contact />
     </>
   );
 }

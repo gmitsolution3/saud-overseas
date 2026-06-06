@@ -1,5 +1,5 @@
 import Header from "@/components/Header/Header";
-// import Footer from "@/components/Footer";
+import Footer from "@/components/Footer";
 
 export default function MainLayout({
   children,
@@ -10,7 +10,7 @@ export default function MainLayout({
     <div className="flex min-h-screen flex-col">
       <Header />
       <main className="flex-1">{children}</main>
-      {/* <Footer /> */}
+      <Footer />
     </div>
   );
 }
