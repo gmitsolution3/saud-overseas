@@ -17,7 +17,7 @@ const NavLink = forwardRef<HTMLAnchorElement, NavLinkCompatProps>(
     const pathname = usePathname();
 
     const activeClassName =
-      "bg-sidebar-accent text-secondary font-medium";
+      "bg-primary text-secondary font-medium";
 
     // Normalize URLs for comparison
     const normalizeUrl = (url: string) => {

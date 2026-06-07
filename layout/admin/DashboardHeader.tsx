@@ -84,8 +84,8 @@ export function DashboardHeader() {
             >
               <Avatar className="h-8 w-8">
                 <AvatarImage src={user?.image} />
-                <AvatarFallback className="bg-primary text-primary-foreground text-xs">
-                  {getUserInitials(user?.name || "")}
+                <AvatarFallback className="bg-primary text-white text-xs">
+                  {getUserInitials(user?.name || "Admin")}
                 </AvatarFallback>
               </Avatar>
             </Button>

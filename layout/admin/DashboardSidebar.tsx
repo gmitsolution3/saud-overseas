@@ -49,7 +49,7 @@ export function DashboardSidebar() {
         >
           <div className="flex justify-center items-center gap-3">
             <Image
-              src="/logo.png"
+              src="/images/logo.png"
               alt="Website logo"
               width={200}
               height={200}
@@ -74,7 +74,7 @@ export function DashboardSidebar() {
                     <NavLink
                       href={item.url}
                       exact={item.url === "/admin-dashboard"}
-                      className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-white transition-colors hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
+                      className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-black transition-colors hover:bg-primary hover:text-white"
                     >
                       <item.icon className="h-5 w-5 shrink-0" />
                       {!isCollapsed && <span>{item.title}</span>}
@@ -98,7 +98,7 @@ export function DashboardSidebar() {
                   <SidebarMenuButton asChild tooltip={item.title}>
                     <NavLink
                       href={item.url}
-                      className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-white transition-colors hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
+                      className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-black transition-colors hover:bg-primary hover:text-white"
                     >
                       <item.icon className="h-5 w-5 shrink-0" />
                       {!isCollapsed && <span>{item.title}</span>}
@@ -115,24 +115,25 @@ export function DashboardSidebar() {
         <div className="flex items-center gap-3">
           <Avatar className="h-10 w-10 shrink-0">
             <AvatarImage src={user?.image} />
-            <AvatarFallback className="bg-primary text-primary-foreground">
-              {getUserInitials(user?.name || "")}
+            <AvatarFallback className="bg-primary text-white">
+              {getUserInitials(user?.name || "Admin")}
             </AvatarFallback>
           </Avatar>
           {!isCollapsed && (
             <div className="flex flex-1 flex-col overflow-hidden">
-              <span className="truncate text-sm font-medium text-white">
-                {user?.name}
+              <span className="truncate text-sm font-medium text-black">
+                {user?.name || "N/A"}
               </span>
               <span className="truncate text-xs text-muted-foreground">
-                {user?.role}
+                {user?.role || "N/A"}
               </span>
             </div>
           )}
           {!isCollapsed && (
             <button
               onClick={handleLogout}
-              className="rounded-lg p-2 text-muted-foreground transition-colors hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
+              className="rounded-lg p-2 text-muted-foreground transition-colors hover:bg-primary hover:text-white
+              "
             >
               <LogOut className="h-4 w-4" />
             </button>
