@@ -41,7 +41,7 @@ export default function Gallery() {
       <div className="mt-14 grid gap-8 md:grid-cols-2">
         {tours.map((tour, i) => (
           <Reveal key={tour.title} delay={i * 0.1}>
-            <article className="group relative h-full overflow-hidden rounded-2xl bg-background shadow-[var(--shadow-card)] transition-all duration-500 hover:-translate-y-1 hover:shadow-[var(--shadow-card-hover)]">
+            <article className="group relative items-start overflow-hidden rounded-2xl bg-background shadow-[var(--shadow-card)] transition-all duration-500 hover:-translate-y-1 hover:shadow-[var(--shadow-card-hover)]">
               {/* Full-width Image Container */}
               <div className="relative h-[320px] w-full overflow-hidden md:h-[400px]">
                 <Image
