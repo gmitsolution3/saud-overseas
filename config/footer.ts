@@ -1,3 +1,6 @@
+import {contact} from "./contact";
+
+
 export const footer = [
   {
     title: "Services",
@@ -32,10 +35,10 @@ export const footer = [
   {
     title: "Contact",
     links: [
-      "+1 (000) 000-0000",
-      "hello@visora.com",
-      "New York, USA",
-      "Mon – Sat · 9–7",
+      contact.phone,
+      contact.email,
+      contact.address,
+      "Mon–Sat : 9–7",
     ],
   },
 ];

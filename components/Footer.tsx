@@ -1,7 +1,7 @@
 import { siteConfig } from "@/config";
-import { Facebook, Instagram, Linkedin, Twitter } from "./ui/icons";
 import Image from "next/image";
 import Link from "next/link";
+import { Facebook, Instagram, Linkedin, Twitter } from "./ui/icons";
 
 export default function Footer() {
   return (
@@ -22,18 +22,42 @@ export default function Footer() {
               {siteConfig.company.slogan}
             </p>
             <div className="mt-5 flex gap-2">
-              {[Linkedin, Twitter, Instagram, Facebook].map(
-                (Icon, i) => (
-                  <a
-                    key={i}
-                    href="#"
-                    aria-label="social"
-                    className="grid h-9 w-9 place-items-center rounded-lg border border-white/10 text-footer-foreground/80 transition-colors hover:border-primary hover:text-primary"
-                  >
-                    <Icon />
-                  </a>
-                ),
-              )}
+              <Link
+                href={siteConfig.social.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="linkedin"
+                className="grid h-9 w-9 place-items-center rounded-lg border border-white/10 text-footer-foreground/80 transition-colors hover:border-primary hover:text-primary"
+              >
+                <Linkedin />
+              </Link>
+              <Link
+                href={siteConfig.social.twitter}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="twitter"
+                className="grid h-9 w-9 place-items-center rounded-lg border border-white/10 text-footer-foreground/80 transition-colors hover:border-primary hover:text-primary"
+              >
+                <Twitter />
+              </Link>
+              <Link
+                href={siteConfig.social.instagram}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="instagram"
+                className="grid h-9 w-9 place-items-center rounded-lg border border-white/10 text-footer-foreground/80 transition-colors hover:border-primary hover:text-primary"
+              >
+                <Instagram />
+              </Link>
+              <Link
+                href={siteConfig.social.facebook}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="facebook"
+                className="grid h-9 w-9 place-items-center rounded-lg border border-white/10 text-footer-foreground/80 transition-colors hover:border-primary hover:text-primary"
+              >
+                <Facebook />
+              </Link>
             </div>
           </div>
 
@@ -60,8 +84,8 @@ export default function Footer() {
 
         <div className="mt-14 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-6 sm:flex-row">
           <p className="text-xs text-footer-foreground/60">
-            © {new Date().getFullYear()} {siteConfig.company.name}. All
-            rights reserved.
+            © {new Date().getFullYear()} {siteConfig.company.name}.
+            All rights reserved.
           </p>
           <div className="flex gap-6 text-xs text-footer-foreground/70">
             <a href="#" className="hover:text-primary">
