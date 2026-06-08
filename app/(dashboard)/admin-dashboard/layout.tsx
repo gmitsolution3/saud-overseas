@@ -1,14 +1,14 @@
 import { SidebarProvider } from "@/components/ui/sidebar";
 import { DashboardSidebar } from "@/layout/admin/DashboardSidebar";
 import { DashboardHeader } from "@/layout/admin/DashboardHeader";
-// import { requireAuth } from "@/lib/requireAuth";
+import { requireAuth } from "@/lib/requireAuth";
 
 export default async function AdminLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  // await requireAuth(["admin"]);
+  await requireAuth(["admin"]);
 
   return (
     <SidebarProvider>

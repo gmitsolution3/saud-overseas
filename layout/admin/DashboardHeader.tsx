@@ -41,46 +41,9 @@ export function DashboardHeader() {
       <div className="flex items-center gap-2 lg:gap-4">
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button variant="ghost" size="icon" className="relative">
-              <Bell className="h-5 w-5" />
-              <Badge className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center bg-destructive p-0 text-[10px]">
-                3
-              </Badge>
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end" className="w-80">
-            <DropdownMenuLabel>Notifications</DropdownMenuLabel>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem className="flex flex-col items-start gap-1 py-3">
-              <span className="font-medium">
-                New appointment request
-              </span>
-              <span className="text-xs text-muted-foreground">
-                John Doe requested an appointment for tomorrow
-              </span>
-            </DropdownMenuItem>
-            <DropdownMenuItem className="flex flex-col items-start gap-1 py-3">
-              <span className="font-medium">Lab results ready</span>
-              <span className="text-xs text-muted-foreground">
-                Patient Sarah's blood work is ready
-              </span>
-            </DropdownMenuItem>
-            <DropdownMenuItem className="flex flex-col items-start gap-1 py-3">
-              <span className="font-medium">
-                Message from Dr. Smith
-              </span>
-              <span className="text-xs text-muted-foreground">
-                Consultation request for patient transfer
-              </span>
-            </DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
-
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
             <Button
               variant="ghost"
-              className="relative flex items-center gap-2 px-2"
+              className="relative flex items-center gap-2 !px-2"
             >
               <Avatar className="h-8 w-8">
                 <AvatarImage src={user?.image} />
