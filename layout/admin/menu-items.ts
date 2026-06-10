@@ -41,11 +41,11 @@ export const mainMenuItems = [
 ];
 
 export const settingsItems = [
-  {
+  /* {
     title: "Users",
     url: dashboardMenu.defineUrl("/users"),
     icon: UserRoundSearch,
-  },
+  }, */
   {
     title: "Settings",
     url: dashboardMenu.defineUrl("/settings"),
