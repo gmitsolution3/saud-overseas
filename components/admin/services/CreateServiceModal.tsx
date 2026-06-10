@@ -1,4 +1,4 @@
-// components/admin-dashboard/modals/CreateServiceModal.tsx
+// components/admin/services/CreateServiceModal.tsx
 "use client";
 
 import { useForm } from "react-hook-form";
@@ -22,9 +22,12 @@ import {
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
-import { Loader2 } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
+import { Loader2, ImageIcon } from "lucide-react";
 import { usePost } from "@/hooks/swr/usePost";
 import Swal from "sweetalert2";
+import { ImageUploader } from "@/components/image-uploader";
+import Image from "next/image";
 
 // Form validation schema
 const formSchema = z.object({
@@ -35,11 +38,12 @@ const formSchema = z.object({
   image: z
     .string()
     .url("Please enter a valid image URL")
-    .min(1, "Image URL is required"),
+    .min(1, "Image is required"),
   description: z
     .string()
     .min(10, "Description must be at least 10 characters")
     .max(500, "Description must not exceed 500 characters"),
+  imagePublicId: z.string().optional(),
 });
 
 type FormValues = z.infer<typeof formSchema>;
@@ -65,12 +69,18 @@ export default function CreateServiceModal({
       title: "",
       image: "",
       description: "",
+      imagePublicId: "",
     },
   });
 
+  const imageUrl = form.watch("image");
+  const title = form.watch("title");
+  const description = form.watch("description");
+
   const onSubmit = async (data: FormValues) => {
     try {
-      const response = await postData(data);
+      const { imagePublicId, ...submitData } = data;
+      const response = await postData(submitData);
 
       if (response.success) {
         setIsModalOpen(false);
@@ -106,9 +116,14 @@ export default function CreateServiceModal({
     setIsModalOpen(false);
   };
 
+  const handleImageChange = (url: string, publicId: string) => {
+    form.setValue("image", url, { shouldValidate: true });
+    form.setValue("imagePublicId", publicId);
+  };
+
   return (
     <Dialog open={isModalOpen} onOpenChange={handleClose}>
-      <DialogContent className="!max-w-2xl">
+      <DialogContent className="!max-w-2xl max-h-[90vh] overflow-y-auto">
         <DialogHeader>
           <DialogTitle className="text-2xl font-bold">
             Create New Service
@@ -119,6 +134,34 @@ export default function CreateServiceModal({
         </DialogHeader>
 
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+          {/* Image Uploader */}
+          <FieldSet>
+            <Field>
+              <div className="flex items-center justify-between mb-2">
+                <FieldLabel>
+                  Service Image <span className="text-destructive">*</span>
+                </FieldLabel>
+                {imageUrl && (
+                  <Badge variant="outline" className="gap-1">
+                    <ImageIcon className="h-3 w-3" />
+                    Image Uploaded
+                  </Badge>
+                )}
+              </div>
+              <FieldContent>
+                <ImageUploader
+                  value={form.watch("image")}
+                  imagePublicId={form.watch("imagePublicId")}
+                  onChange={handleImageChange}
+                />
+              </FieldContent>
+              <FieldDescription>
+                Upload an image for your service (max 5MB). Recommended size: 800x600px.
+              </FieldDescription>
+              <FieldError>{form.formState.errors.image?.message}</FieldError>
+            </Field>
+          </FieldSet>
+
           {/* Title */}
           <FieldSet>
             <Field>
@@ -135,25 +178,6 @@ export default function CreateServiceModal({
                 Give your service a clear and descriptive title
               </FieldDescription>
               <FieldError>{form.formState.errors.title?.message}</FieldError>
-            </Field>
-          </FieldSet>
-
-          {/* Image URL */}
-          <FieldSet>
-            <Field>
-              <FieldLabel>
-                Image URL <span className="text-destructive">*</span>
-              </FieldLabel>
-              <FieldContent>
-                <Input
-                  placeholder="https://example.com/image.jpg"
-                  {...form.register("image")}
-                />
-              </FieldContent>
-              <FieldDescription>
-                Provide a URL for the service image
-              </FieldDescription>
-              <FieldError>{form.formState.errors.image?.message}</FieldError>
             </Field>
           </FieldSet>
 
@@ -178,29 +202,34 @@ export default function CreateServiceModal({
           </FieldSet>
 
           {/* Live Preview Card */}
-          {form.watch("title") && (
+          {(title || description || imageUrl) && (
             <div className="rounded-lg border bg-card p-4 space-y-3">
               <div className="flex items-center justify-between">
                 <h4 className="text-sm font-medium">Live Preview</h4>
+                <Badge variant="secondary">Preview</Badge>
               </div>
               <div className="flex items-start gap-3">
-                <div className="flex-shrink-0 w-10 h-10 rounded bg-primary/10 flex items-center justify-center overflow-hidden">
-                  {form.watch("image") ? (
-                    <img
-                      src={form.watch("image")}
-                      alt={form.watch("title")}
+                <div className="flex-shrink-0 w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center overflow-hidden relative">
+                  {imageUrl ? (
+                    <Image
+                      src={imageUrl}
+                      alt={title || "Service preview"}
+                      width={48}
+                      height={48}
                       className="w-full h-full object-cover"
                     />
                   ) : (
                     <span className="text-lg font-semibold text-primary">
-                      {form.watch("title").charAt(0)}
+                      {title ? title.charAt(0) : "?"}
                     </span>
                   )}
                 </div>
                 <div className="min-w-0 flex-1">
-                  <p className="font-medium truncate">{form.watch("title")}</p>
-                  <p className="text-xs text-muted-foreground line-clamp-1">
-                    {form.watch("description") || "Description will appear here"}
+                  <p className="font-medium truncate">
+                    {title || "Service Title"}
+                  </p>
+                  <p className="text-xs text-muted-foreground line-clamp-2">
+                    {description || "Description will appear here"}
                   </p>
                 </div>
               </div>

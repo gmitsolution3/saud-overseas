@@ -5,4 +5,5 @@ export interface IService {
   description: string;
   createdAt: string;
   updatedAt: string;
+  imagePublicId?: string;
 }
