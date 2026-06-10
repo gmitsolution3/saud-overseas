@@ -1,16 +1,12 @@
 import { DashboardMenu } from "@/utils";
 import {
-  ClipboardCheck,
-  FileStack,
-  GalleryVerticalEnd,
-  Images,
+  BookImage,
+  Contact,
   LayoutDashboard,
-  LayoutList,
-  LibraryBig,
-  MessagesSquare,
+  List,
+  MapPinned,
   Settings,
   UserRoundSearch,
-  Users,
 } from "lucide-react";
 
 const baseDashboardUrl = "/admin-dashboard";
@@ -23,46 +19,24 @@ export const mainMenuItems = [
     icon: LayoutDashboard,
   },
   {
-    title: "Sliders",
-    url: dashboardMenu.defineUrl("/sliders"),
-    icon: Images,
-  },
-  {
     title: "Services",
     url: dashboardMenu.defineUrl("/services"),
-    icon: ClipboardCheck,
+    icon: List,
   },
   {
-    title: "portfolios",
-    url: dashboardMenu.defineUrl("/portfolios"),
-    icon: GalleryVerticalEnd,
+    title: "Destination",
+    url: dashboardMenu.defineUrl("/destinations"),
+    icon: MapPinned,
   },
   {
-    title: "Case Studies",
-    url: dashboardMenu.defineUrl("/case-studies"),
-    icon: LibraryBig,
+    title: "Gallery",
+    url: dashboardMenu.defineUrl("/galleries"),
+    icon: BookImage,
   },
   {
-    title: "Leadership Messages",
-    url: dashboardMenu.defineUrl(
-      "/leadership-messages",
-    ),
-    icon: MessagesSquare,
-  },
-  {
-    title: "Team Members",
-    url: dashboardMenu.defineUrl("/team-members"),
-    icon: Users,
-  },
-  {
-    title: "Blogs",
-    url: dashboardMenu.defineUrl("/blogs"),
-    icon: LayoutList,
-  },
-  {
-    title: "Job Postings",
-    url: dashboardMenu.defineUrl("/job-postings"),
-    icon: FileStack,
+    title: "Contact",
+    url: dashboardMenu.defineUrl("/contacts"),
+    icon: Contact,
   },
 ];
 
